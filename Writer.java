@@ -4,11 +4,10 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class WebSiteReader {
+public class Writer {
 
-    public static void writeToFileFromTheWebSite() throws IOException {
+    public void writeToFileFromTheWebSite(URL url) throws IOException {
 
-        URL url = new URL("https://www.simbirsoft.com/");
         BufferedReader reader = new BufferedReader(new InputStreamReader
                 (url.openConnection().getInputStream(), "UTF-8"));
 

@@ -3,11 +3,11 @@ package com.websitereader;
 import java.io.*;
 import java.net.URL;
 
-public class ReadFileFromFile {
+public class Reader {
 
-    public static void readFromFile() throws IOException {
+    public void readFromFile(String fileName) throws IOException {
 
-        FileInputStream fileInputStream = new FileInputStream("C:\\Users\\slava\\Documents\\filename.html");
+        FileInputStream fileInputStream = new FileInputStream(fileName);
         BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream));
 
         while (true) {
