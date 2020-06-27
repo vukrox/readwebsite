@@ -10,11 +10,11 @@ public class Main {
 
         Writer writer = new Writer();
         URL url = new URL("https://www.simbirsoft.com/");
-        writer.writeToFileFromTheWebSite(url);
+        String fileName = "C:\\Users\\slava\\Documents\\filename.html";
+        writer.writeToFileFromTheWebSite(url,fileName);
 
         Reader reader = new Reader();
-        String fileName = "C:\\Users\\slava\\Documents\\filename.html";
-        reader.readFromFile(fileName);
-
+        String text = reader.readFromFile(fileName);
+        System.out.println(text);
     }
 }

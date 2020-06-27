@@ -5,16 +5,21 @@ import java.net.URL;
 
 public class Reader {
 
-    public void readFromFile(String fileName) throws IOException {
+    public String readFromFile(String fileName) throws IOException {
 
-        FileInputStream fileInputStream = new FileInputStream(fileName);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream));
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        String line = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        String         ls = System.getProperty("line.separator");
 
-        while (true) {
-            String line = reader.readLine();
-            if (line == null)
-                break;
-            System.out.println(line);
+        try{
+            while ((line = reader.readLine()) !=null) {
+                stringBuilder.append(line);
+                stringBuilder.append(ls);
+            }
+            return stringBuilder.toString();
+        }finally {
+            reader.close();
         }
     }
 }
