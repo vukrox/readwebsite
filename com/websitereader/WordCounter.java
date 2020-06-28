@@ -4,8 +4,14 @@ import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ *
+ */
 public class WordCounter {
 
+    /**
+     * @param fileName
+     */
     public void countEachWord(String fileName) throws IOException {
         //Вычитываем файл в Вычитываем
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
@@ -32,7 +38,8 @@ public class WordCounter {
     private void runMainTrimProcess(String x, Map<String, Integer> frequencey) {
 
         //Делители
-        String regex = "[' ', ',', '.', '!', '?','\"', ';', ':', '\\[', '\\]', '\\(', '\\)', '\\n', '\\r', '\\t']";
+//        String regex = "[' ', ',', '.', '!', '?','\"', ';', ':', '\\[', '\\]', '\\(', '\\)', '\\n', '\\r', '\\t']";
+        String regex = "([\\s,.!?\";:\\[\\]()\\\\n\\\\r\\\\t])";
 
         //Разбиваем строку на слова, разделителем является символ из regex
         String[] wordsFromString = x.split(regex);
