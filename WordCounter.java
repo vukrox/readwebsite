@@ -13,29 +13,13 @@ public class WordCounter {
 
         while (line != null) {
             if (!line.trim().equals("")){
-                String [] words = line.split(" ");
+                String [] words = line.split("[' ', ',', '.', '!', '?','\"', ';', ':', '\\[', '\\]', '(', ')', '\\n', '\\r', '\\t']+");
 
                 for (String word: words){
                     if (word == null || word.trim().equals("")){
                         continue;
                     }
-
                     String processed = word.toLowerCase();
-                    processed = processed.replace(","," ");
-                    processed = processed.replace("."," ");
-                    processed = processed.replace("!"," ");
-                    processed = processed.replace("?"," ");
-                    processed = processed.replace(";"," ");
-                    processed = processed.replace(":"," ");
-                    processed = processed.replace("?"," ");
-                    processed = processed.replace("["," ");
-                    processed = processed.replace("]"," ");
-                    processed = processed.replace("("," ");
-                    processed = processed.replace(")"," ");
-                    processed = processed.replace("\""," ");
-                    processed = processed.replace("\n"," ");
-                    processed = processed.replace("\t"," ");
-                    processed = processed.replace("\r"," ");
 
 
                     if (frequencey.containsKey(processed)) {
