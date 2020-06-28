@@ -30,6 +30,8 @@ public class WordCounter {
     }
 
     private void runMainTrimProcess(String x, Map<String, Integer> frequencey) {
+
+        //Делители
         String regex = "[' ', ',', '.', '!', '?','\"', ';', ':', '\\[', '\\]', '\\(', '\\)', '\\n', '\\r', '\\t']";
 
         //Разбиваем строку на слова, разделителем является символ из regex
