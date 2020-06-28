@@ -17,7 +17,8 @@ public class Reader {
                 stringBuilder.append(line);
                 stringBuilder.append(ls);
             }
-            return stringBuilder.toString();
+            line = stringBuilder.toString();
+            return line;
         }finally {
             reader.close();
         }

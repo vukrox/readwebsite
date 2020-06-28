@@ -2,7 +2,8 @@ package com.websitereader;
 
 import java.io.IOException;
 import java.net.URL;
-
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Main {
@@ -15,6 +16,9 @@ public class Main {
 
         Reader reader = new Reader();
         String text = reader.readFromFile(fileName);
-        System.out.println(text);
+
+
+        WordCounter counter = new WordCounter();
+        counter.countEachWord(fileName);
     }
 }
