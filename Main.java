@@ -10,13 +10,14 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         Writer writer = new Writer();
+        //Вставьте ссылку между " ", чтобы "записать сайт".
         URL url = new URL("https://www.simbirsoft.com/");
+        //Укажите путь между " " к файлу вывода.
         String fileName = "C:\\Users\\slava\\Documents\\filename.html";
         writer.writeToFileFromTheWebSite(url,fileName);
 
         Reader reader = new Reader();
         String text = reader.readFromFile(fileName);
-
 
         WordCounter counter = new WordCounter();
         counter.countEachWord(fileName);
