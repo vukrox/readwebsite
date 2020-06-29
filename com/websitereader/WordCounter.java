@@ -24,7 +24,7 @@ public class WordCounter {
         List<String> strings = reader.lines().collect(Collectors.toList());
 
         //Каждую строку приводим к нижнему регистру
-        strings.forEach(x -> x.toLowerCase());
+        strings.forEach(String::toLowerCase);
 
         //Каждую строку разбираем на слова и сохраняем в структуру Map<String, Integer> frequencey
         strings.forEach(x -> runMainTrimProcess(x, frequencey));
@@ -39,7 +39,9 @@ public class WordCounter {
 
         //Делители
 //        String regex = "[' ', ',', '.', '!', '?','\"', ';', ':', '\\[', '\\]', '\\(', '\\)', '\\n', '\\r', '\\t']";
-        String regex = "([\\s,.!?\";:\\[\\]()\\\\n\\\\r\\\\t])";
+//        String regex = "([\\s,.!?\";:\\[\\]()\\\\n\\\\r\\\\t_/><=-\\\\#}{])";
+//        String regex = "([\\]\\[\\)\\(,.!?\":;\\s\\n\\r\\t]+)";
+        String regex = "[^A-Za-zА-Яа-я]";
 
         //Разбиваем строку на слова, разделителем является символ из regex
         String[] wordsFromString = x.split(regex);
