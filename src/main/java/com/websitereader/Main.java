@@ -1,4 +1,4 @@
-package com.websitereader;
+package src.main.java.com.websitereader;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -16,15 +16,13 @@ public class Main {
 
         String fileName = prop.getProperty("fileName");
 
+        String delimeterPattern = prop.getProperty("delemiterPattern");
+
         Writer writer = new Writer();
 
         writer.writeToFileFromTheWebSite(url, fileName);
 
-        Reader reader = new Reader();
-
-        reader.readFromFile(fileName);
-
-        WordCounter counter = new WordCounter();
+        WordCounter counter = new WordCounter(delimeterPattern);
 
         counter.countEachWord(fileName);
 

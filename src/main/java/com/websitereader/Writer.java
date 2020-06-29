@@ -1,27 +1,22 @@
-package com.websitereader;
+package src.main.java.com.websitereader;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-/**
+/**Читает с сайта и записывает в файл.
  *
  */
 public class Writer {
 
-    //Стадия 1. - читаем информацию с сайта и записываем в файл на компьютер.
-    //Метод с говорящим названием; на вход передаем URL сайта для парсинга и файл в который будем сохранять
-
-
-
-
-    /**
-     *
+    /**Метод с говорящим названием; на вход передаем URL сайта для парсинга и файл в который будем сохранять
+     *Стадия 1. - читаем информацию с сайта и записываем в файл на компьютер.
      * @param urlName
      * @param fileName
      * @throws IOException
      */
+
     public void writeToFileFromTheWebSite(String urlName, String fileName) throws IOException {
 
         URL url = new URL(urlName);
@@ -37,11 +32,6 @@ public class Writer {
                 arrayList.add(reader.readLine());
             }
             reader.close();
-
-//            System.out.println("See what's been parsed");
-//            for (int i = 0; i < arrayList.size(); i++) {
-//                System.out.println(arrayList.get(i));
-//            }
 
             //То что записали в АЛ, переписываем BW в файл.
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {

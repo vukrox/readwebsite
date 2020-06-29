@@ -1,16 +1,27 @@
-package com.websitereader;
+package src.main.java.com.websitereader;
 
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
+/** Читает файл и считает слова выводя в консоль результат.
  *
  */
 public class WordCounter {
 
-    /**
-     * @param fileName
+    //Поддерживает 2 варианта разделения (согласно ТЗ и согласно здравой логики)
+    private final String delimeterPattern;
+
+    public WordCounter(String delimeterPattern) {
+        this.delimeterPattern = delimeterPattern;
+    }
+
+
+    /** Основной рабочий метод:
+     * -ридером вычитывает файл, сохраняет в Лист строки,
+     * -переводит отдельные слова в массив используя делители,
+     * -считает количество слов в HashMap(ключ - слово, значение - количество его повторений).
+     * @param fileName - на вход принимает имя файла, которое было указано в аргументах.
      */
     public void countEachWord(String fileName) throws IOException {
         //Вычитываем файл в Вычитываем
@@ -37,14 +48,8 @@ public class WordCounter {
 
     private void runMainTrimProcess(String x, Map<String, Integer> frequencey) {
 
-        //Делители
-//        String regex = "[' ', ',', '.', '!', '?','\"', ';', ':', '\\[', '\\]', '\\(', '\\)', '\\n', '\\r', '\\t']";
-//        String regex = "([\\s,.!?\";:\\[\\]()\\\\n\\\\r\\\\t_/><=-\\\\#}{])";
-//        String regex = "([\\]\\[\\)\\(,.!?\":;\\s\\n\\r\\t]+)";
-        String regex = "[^A-Za-zА-Яа-я]";
-
         //Разбиваем строку на слова, разделителем является символ из regex
-        String[] wordsFromString = x.split(regex);
+        String[] wordsFromString = x.split(delimeterPattern);
 
         //Каждое найденное слово обрабатываем
         for (String processed : wordsFromString) {

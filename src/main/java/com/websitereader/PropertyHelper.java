@@ -1,9 +1,13 @@
-package com.websitereader;
+package src.main.java.com.websitereader;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**Интерфейс взаимодействия с программой вынесен в Properties.
+ * Указывайте адрес сайта и конечный файл в "application.properties"
+ *
+ */
 public class PropertyHelper {
 
     public Properties loadProperties(){
