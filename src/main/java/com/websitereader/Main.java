@@ -1,12 +1,17 @@
 package src.main.java.com.websitereader;
 
+import src.main.java.com.jdbc.Database;
+
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
 
         PropertyHelper helper = new PropertyHelper();
 
@@ -26,7 +31,16 @@ public class Main {
 
         counter.countEachWord(fileName);
 
+        Database db = new Database();
+        String sql = "CREATE TABLE IF NOT EXISTS `table` ("+
+                "`key` VARCHAR(50) PRIMARY KEY,"+
+                "`value` INT(6) NOT NULL"+
+                ");";
+
+        db.execute(sql);
+        // Проблема тут
+        //        db.executeUpdate("INSERT INTO table (Key, Value) VALUES("+next.getKey()+",'"+next.getValue()+"');";
+
+        db.closeConnection();
     }
-
-
 }
