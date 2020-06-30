@@ -29,7 +29,7 @@ public class Main {
 
         WordCounter counter = new WordCounter(delimeterPattern);
 
-        counter.countEachWord(fileName);
+        Map<String, Integer> frequency = counter.countEachWord(fileName);
 
         Database db = new Database();
         String sql = "CREATE TABLE IF NOT EXISTS `table` ("+
@@ -38,9 +38,9 @@ public class Main {
                 ");";
 
         db.execute(sql);
-        // Проблема тут
-        //        db.executeUpdate("INSERT INTO table (Key, Value) VALUES("+next.getKey()+",'"+next.getValue()+"');";
-
+        for ( Map.Entry<String,Integer> next : frequency.entrySet()) {
+            db.executeUpdate("INSERT INTO table (Key, Value) VALUES(" + next.getKey() + ",'" + next.getValue() + "');");
+        }
         db.closeConnection();
     }
 }

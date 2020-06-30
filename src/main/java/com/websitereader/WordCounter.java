@@ -23,7 +23,7 @@ public class WordCounter {
      * -считает количество слов в HashMap(ключ - слово, значение - количество его повторений).
      * @param fileName - на вход принимает имя файла, которое было указано в аргументах.
      */
-    public void countEachWord(String fileName) throws IOException {
+    public Map<String,Integer> countEachWord(String fileName) throws IOException {
         //Вычитываем файл в Вычитываем
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
 
@@ -44,6 +44,7 @@ public class WordCounter {
         for (Map.Entry<String, Integer> entry : frequencey.entrySet()) {
             System.out.println(entry.getKey().toUpperCase() + " : " + entry.getValue());
         }
+        return frequencey;
     }
 
     private void runMainTrimProcess(String x, Map<String, Integer> frequencey) {
