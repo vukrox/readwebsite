@@ -1,20 +1,28 @@
-package src.main.java.com.jdbc;
+package com.websitereader.util;
 
 import java.sql.*;
+import java.util.Properties;
 
-public class Database extends Configues {
-
-    private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/websitesaver?serverTimezone=UTC";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "Na4uhudonossor";
+public class DBHelper {
+    private final String driver;
+    private final String url;
+    private final String login;
+    private final String password;
 
     private static Connection dbConnection = null;
 
-    public Database() {
+    public DBHelper(Properties properties) {
+        this.driver = properties.getProperty("db.driver");
+        this.url = properties.getProperty("db.url");
+        this.login = properties.getProperty("db.login");
+        this.password = properties.getProperty("db.password");
+        init();
+    }
+
+    private void init() {
         try {
-            Class.forName(JDBC_DRIVER);
-            dbConnection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            Class.forName(driver);
+            dbConnection = DriverManager.getConnection(url, login, password);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -22,18 +30,21 @@ public class Database extends Configues {
     }
 
     public void closeConnection() {
-        if (dbConnection == null) return;
+        if (dbConnection == null) {
+            return;
+        }
         try {
             dbConnection.close();
             dbConnection = null;
-        } catch(SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
     public boolean execute(String sql) throws SQLException {
-        if (dbConnection == null)
+        if (dbConnection == null) {
             throw new SQLException("Connection null!");
+        }
         Statement statement = dbConnection.createStatement();
         boolean res = statement.execute(sql);
         statement.close();
@@ -41,8 +52,9 @@ public class Database extends Configues {
     }
 
     public int executeUpdate(String sql) throws SQLException {
-        if (dbConnection == null)
+        if (dbConnection == null) {
             throw new SQLException("Connection null!");
+        }
         Statement statement = dbConnection.createStatement();
         int res = statement.executeUpdate(sql);
         statement.close();
@@ -50,12 +62,12 @@ public class Database extends Configues {
     }
 
     public ResultSet executeQuery(String sql) throws SQLException {
-        if (dbConnection == null)
+        if (dbConnection == null) {
             throw new SQLException("Connection null!");
+        }
         Statement statement = dbConnection.createStatement();
         ResultSet res = statement.executeQuery(sql);
         statement.close();
         return res;
     }
 }
-
